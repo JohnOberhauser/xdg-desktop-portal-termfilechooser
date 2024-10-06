@@ -49,13 +49,13 @@ static int exec_filechooser(void *data, bool writing, bool multiple, bool direct
     }
 
     size_t num_lines = 0;
-    char cr;
+    int cr;
     do {
         cr = getc(fp);
         if (cr == '\n') {
             num_lines++;
+            cr = getc(fp);
         }
-        cr = getc(fp);
         if (ferror(fp)) {
             return 1;
         }
